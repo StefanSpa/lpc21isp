@@ -89,6 +89,31 @@ static const unsigned int SectorTable_17xx[] =
     32768, 32768, 32768, 32768, 32768, 32768
 };
 
+// Used for LPC1857 devices
+static const unsigned int SectorTable_1857[] =
+{
+     8192,  8192,  8192,  8192,  8192,  8192,  8192,  8192,
+    65536, 65536, 65536, 65536, 65536, 65536, 65536,
+     8192,  8192,  8192,  8192,  8192,  8192,  8192,  8192,
+    65536, 65536, 65536, 65536, 65536, 65536, 65536
+};
+
+// Used for LPC4357 devices
+static const unsigned int SectorTable_4357[] =
+{
+     8192,  8192,  8192,  8192,  8192,  8192,  8192,  8192,
+    65536, 65536, 65536, 65536, 65536, 65536, 65536,
+     8192,  8192,  8192,  8192,  8192,  8192,  8192,  8192,
+    65536, 65536, 65536, 65536, 65536, 65536, 65536
+};
+
+// Used for LPC8xx devices
+static const unsigned int SectorTable_8xx[] =
+{
+     1024,  1024,  1024,  1024,  1024,  1024,  1024,  1024,
+     1024,  1024,  1024,  1024,  1024,  1024,  1024,  1024
+};
+
 static int unsigned SectorTable_RAM[]  = { 65000 };
 
 static LPC_DEVICE_TYPE LPCtypes[] =
@@ -97,128 +122,146 @@ static LPC_DEVICE_TYPE LPCtypes[] =
 
    // id, name of product, flash size, ram size, total number of sector, max copy size, sector table, chip variant
 
-   { 0x2500102B, "1102",         32,  8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x00008100, "810M021FN8",     4,   1,  4,  512, SectorTable_8xx,  CHIP_VARIANT_LPC8XX  },
+   { 0x00008110, "811M001FDH16",   8,   2,  8, 1024, SectorTable_8xx,  CHIP_VARIANT_LPC8XX  },
+   { 0x00008120, "812M101FDH16",  16,   4, 16, 1024, SectorTable_8xx,  CHIP_VARIANT_LPC8XX  },
+   { 0x00008121, "812M101FD20",   16,   4, 16, 1024, SectorTable_8xx,  CHIP_VARIANT_LPC8XX  },
+   { 0x00008122, "812M101FDH20",  16,   4, 16, 1024, SectorTable_8xx,  CHIP_VARIANT_LPC8XX  },
 
-   { 0x0A07102B, "1110.../002",   4,  1,  1, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x1A07102B, "1110.../002",   4,  1,  1, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x0A16D02B, "1111.../002",   8,  2,  2, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x1A16D02B, "1111.../002",   8,  2,  2, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x041E502B, "1111.../101",   8,  2,  2, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x2516D02B, "1111.../102",   8,  2,  2, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x0416502B, "1111.../201",   8,  4,  2, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x2516902B, "1111.../202",   8,  4,  2, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x042D502B, "1112.../101",  16,  2,  4, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x2524D02B, "1112.../102",  16,  2,  4, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x0A24902B, "1112.../102",  16,  4,  4, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x1A24902B, "1112.../102",  16,  4,  4, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x0425502B, "1112.../201",  16,  4,  4, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x2524902B, "1112.../202",  16,  4,  4, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x0434502B, "1113.../201",  24,  4,  6, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x2532902B, "1113.../202",  24,  4,  6, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x0434102B, "1113.../301",  24,  8,  6, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x2532102B, "1113.../302",  24,  8,  6, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x0A40902B, "1114.../102",  32,  4,  8, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x1A40902B, "1114.../102",  32,  4,  8, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x0444502B, "1114.../201",  32,  4,  8, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x2540902B, "1114.../202",  32,  4,  8, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x0444102B, "1114.../301",  32,  8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x2540102B, "1114.../302",  32,  8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x2500102B, "1102",          32,   8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
 
-   { 0x00040042, "1114.../203",  32,  8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x00040040, "1114.../303",  32,  8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x00040060, "1114.../323",  32,  8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x00040070, "1114.../333",  32,  8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x00050080, "1115.../303",  64,  8, 16, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX }, 
-   
-   { 0x1421102B, "11C12.../301",  16,  8,  4, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x1440102B, "11C14.../301",  32,  8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x1431102B, "11C22.../301",  16,  8,  4, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x1430102B, "11C24.../301",  32,  8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x0A07102B, "1110.../002",    4,   1,  1, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x1A07102B, "1110.../002",    4,   1,  1, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x0A16D02B, "1111.../002",    8,   2,  2, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x1A16D02B, "1111.../002",    8,   2,  2, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x041E502B, "1111.../101",    8,   2,  2, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x2516D02B, "1111.../102",    8,   2,  2, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x0416502B, "1111.../201",    8,   4,  2, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x2516902B, "1111.../202",    8,   4,  2, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x042D502B, "1112.../101",   16,   2,  4, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x2524D02B, "1112.../102",   16,   2,  4, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x0A24902B, "1112.../102",   16,   4,  4, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x1A24902B, "1112.../102",   16,   4,  4, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x0425502B, "1112.../201",   16,   4,  4, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x2524902B, "1112.../202",   16,   4,  4, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x0434502B, "1113.../201",   24,   4,  6, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x2532902B, "1113.../202",   24,   4,  6, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x0434102B, "1113.../301",   24,   8,  6, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x2532102B, "1113.../302",   24,   8,  6, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x0A40902B, "1114.../102",   32,   4,  8, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x1A40902B, "1114.../102",   32,   4,  8, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x0444502B, "1114.../201",   32,   4,  8, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x2540902B, "1114.../202",   32,   4,  8, 1024, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x0444102B, "1114.../301",   32,   8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x2540102B, "1114.../302",   32,   8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
 
-   { 0x0364002B, "1224.../101",  32,  8,  4, 2048, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x0364202B, "1224.../121",  48, 12, 32, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x0365002B, "1225.../301",  64, 16, 32, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x0365202B, "1225.../321",  80, 20, 32, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x0366002B, "1226",         96, 24, 32, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
-   { 0x0367002B, "1227",        128, 32, 32, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x00040042, "1114.../203",   32,   8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x00040040, "1114.../303",   32,   8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x00040060, "1114.../323",   32,   8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x00040070, "1114.../333",   32,   8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x00050080, "1115.../303",   64,   8, 16, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
 
-   { 0x2C42502B, "1311",          8,  4,  2, 1024, SectorTable_17xx, CHIP_VARIANT_LPC13XX },
-   { 0x1816902B, "1311/01",       8,  4,  2, 1024, SectorTable_17xx, CHIP_VARIANT_LPC13XX },
-   { 0x2C40102B, "1313",         32,  8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC13XX },
-   { 0x1830102B, "1313/01",      32,  8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC13XX },
-   { 0x3D01402B, "1342",         16,  4,  4, 1024, SectorTable_17xx, CHIP_VARIANT_LPC13XX },
-   { 0x3D00002B, "1343",         32,  8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC13XX },
+   { 0x1421102B, "11C12.../301",  16,   8,  4, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x1440102B, "11C14.../301",  32,   8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x1431102B, "11C22.../301",  16,   8,  4, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x1430102B, "11C24.../301",  32,   8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
 
-   { 0x25001118, "1751",         32,  8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x25001121, "1752",         64, 16, 16, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x25011722, "1754",        128, 32, 18, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x25011723, "1756",        256, 32, 22, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x25013F37, "1758",        512, 64, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x25113737, "1759",        512, 64, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x26011922, "1764",        128, 32, 18, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x26013733, "1765",        256, 64, 22, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x26013F33, "1766",        256, 64, 22, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x26012837, "1767",        512, 64, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x26013F37, "1768",        512, 64, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x26113F37, "1769",        512, 64, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x0364002B, "1224.../101",   32,   8,  4, 2048, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x0364202B, "1224.../121",   48,  12, 32, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x0365002B, "1225.../301",   64,  16, 32, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x0365202B, "1225.../321",   80,  20, 32, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x0366002B, "1226",          96,  24, 32, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
+   { 0x0367002B, "1227",         128,  32, 32, 4096, SectorTable_17xx, CHIP_VARIANT_LPC11XX },
 
-   { 0x27011132, "1774",        128, 40, 18, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x27191F43, "1776",        256, 80, 22, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x27193747, "1777",        512, 96, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x27193F47, "1778",        512, 96, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x281D1743, "1785",        256, 80, 22, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x281D1F43, "1786",        256, 80, 22, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x281D3747, "1787",        512, 96, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
-   { 0x281D3F47, "1788",        512, 96, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x2C42502B, "1311",           8,   4,  2, 1024, SectorTable_17xx, CHIP_VARIANT_LPC13XX },
+   { 0x1816902B, "1311/01",        8,   4,  2, 1024, SectorTable_17xx, CHIP_VARIANT_LPC13XX },
+   { 0x2C40102B, "1313",          32,   8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC13XX },
+   { 0x1830102B, "1313/01",       32,   8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC13XX },
+   { 0x3D01402B, "1342",          16,   4,  4, 1024, SectorTable_17xx, CHIP_VARIANT_LPC13XX },
+   { 0x3D00002B, "1343",          32,   8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC13XX },
 
-   { 0x0004FF11, "2103",         32,  8,  8, 4096, SectorTable_2103, CHIP_VARIANT_LPC2XXX },
-   { 0xFFF0FF12, "2104",        128, 16, 15, 8192, SectorTable_210x, CHIP_VARIANT_LPC2XXX },
-   { 0xFFF0FF22, "2105",        128, 32, 15, 8192, SectorTable_210x, CHIP_VARIANT_LPC2XXX },
-   { 0xFFF0FF32, "2106",        128, 64, 15, 8192, SectorTable_210x, CHIP_VARIANT_LPC2XXX },
-   { 0x0201FF01, "2109",         64,  8,  8, 4096, SectorTable_2109, CHIP_VARIANT_LPC2XXX },
-   { 0x0101FF12, "2114",        128, 16, 15, 8192, SectorTable_211x, CHIP_VARIANT_LPC2XXX },
-   { 0x0201FF12, "2119",        128, 16, 15, 8192, SectorTable_211x, CHIP_VARIANT_LPC2XXX },
-   { 0x0101FF13, "2124",        256, 16, 17, 8192, SectorTable_212x, CHIP_VARIANT_LPC2XXX },
-   { 0x0201FF13, "2129",        256, 16, 17, 8192, SectorTable_212x, CHIP_VARIANT_LPC2XXX },
-   { 0x0002FF01, "2131",         32,  8,  8, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x0002FF11, "2132",         64, 16,  9, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x0002FF12, "2134",        128, 16, 11, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x0002FF23, "2136",        256, 32, 15, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x0002FF25, "2138",        512, 32, 27, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x0402FF01, "2141",         32,  8,  8, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x0402FF11, "2142",         64, 16,  9, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x0402FF12, "2144",        128, 16, 11, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x0402FF23, "2146",        256, 40, 15, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x0402FF25, "2148",        512, 40, 27, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x0301FF13, "2194",        256, 16, 17, 8192, SectorTable_212x, CHIP_VARIANT_LPC2XXX },
-   { 0x0301FF12, "2210",          0, 16,  0, 8192, SectorTable_211x, CHIP_VARIANT_LPC2XXX }, /* table is a "don't care" */
-   { 0x0401FF12, "2212",        128, 16, 15, 8192, SectorTable_211x, CHIP_VARIANT_LPC2XXX },
-   { 0x0601FF13, "2214",        256, 16, 17, 8192, SectorTable_212x, CHIP_VARIANT_LPC2XXX },
+   { 0x25001118, "1751",          32,   8,  8, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x25001121, "1752",          64,  16, 16, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x25011722, "1754",         128,  32, 18, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x25011723, "1756",         256,  32, 22, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x25013F37, "1758",         512,  64, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x25113737, "1759",         512,  64, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x26011922, "1764",         128,  32, 18, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x26013733, "1765",         256,  64, 22, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x26013F33, "1766",         256,  64, 22, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x26012837, "1767",         512,  64, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x26013F37, "1768",         512,  64, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x26113F37, "1769",         512,  64, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+
+   { 0x27011132, "1774",         128,  40, 18, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x27191F43, "1776",         256,  80, 22, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x27193747, "1777",         512,  96, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x27193F47, "1778",         512,  96, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x281D1743, "1785",         256,  80, 22, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x281D1F43, "1786",         256,  80, 22, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x281D3747, "1787",         512,  96, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+   { 0x281D3F47, "1788",         512,  96, 30, 4096, SectorTable_17xx, CHIP_VARIANT_LPC17XX },
+
+   { 0xA00A8B3F, "1810",           0, 168, 18, 4096, SectorTable_17xx, CHIP_VARIANT_LPC18XX }, /* From UM10503 Rev. 1.4 -- 3 Sep 2012 */
+   { 0xA0008B3C, "1820",           0, 200, 18, 4096, SectorTable_17xx, CHIP_VARIANT_LPC18XX }, /* From UM10503 Rev. 1.4 -- 3 Sep 2012 */
+   { 0xA0000A30, "1830",           0, 264, 18, 4096, SectorTable_17xx, CHIP_VARIANT_LPC18XX }, /* From UM10503 Rev. 1.4 -- 3 Sep 2012 */
+   { 0xA0000830, "1850",           0, 264, 18, 4096, SectorTable_17xx, CHIP_VARIANT_LPC18XX }, /* From UM10503 Rev. 1.4 -- 3 Sep 2012 */
+   { 0xA001C830, "1853/1857",   1024, 512, 30, 4096, SectorTable_1857, CHIP_VARIANT_LPC18XX }, /* From UM10503 Rev. 1.4 -- 3 Sep 2012 */
+
+   { 0x0004FF11, "2103",          32,   8,  8, 4096, SectorTable_2103, CHIP_VARIANT_LPC2XXX },
+   { 0xFFF0FF12, "2104",         128,  16, 15, 8192, SectorTable_210x, CHIP_VARIANT_LPC2XXX },
+   { 0xFFF0FF22, "2105",         128,  32, 15, 8192, SectorTable_210x, CHIP_VARIANT_LPC2XXX },
+   { 0xFFF0FF32, "2106",         128,  64, 15, 8192, SectorTable_210x, CHIP_VARIANT_LPC2XXX },
+   { 0x0201FF01, "2109",          64,   8,  8, 4096, SectorTable_2109, CHIP_VARIANT_LPC2XXX },
+   { 0x0101FF12, "2114",         128,  16, 15, 8192, SectorTable_211x, CHIP_VARIANT_LPC2XXX },
+   { 0x0201FF12, "2119",         128,  16, 15, 8192, SectorTable_211x, CHIP_VARIANT_LPC2XXX },
+   { 0x0101FF13, "2124",         256,  16, 17, 8192, SectorTable_212x, CHIP_VARIANT_LPC2XXX },
+   { 0x0201FF13, "2129",         256,  16, 17, 8192, SectorTable_212x, CHIP_VARIANT_LPC2XXX },
+   { 0x0002FF01, "2131",          32,   8,  8, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x0002FF11, "2132",          64,  16,  9, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x0002FF12, "2134",         128,  16, 11, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x0002FF23, "2136",         256,  32, 15, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x0002FF25, "2138",         512,  32, 27, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x0402FF01, "2141",          32,   8,  8, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x0402FF11, "2142",          64,  16,  9, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x0402FF12, "2144",         128,  16, 11, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x0402FF23, "2146",         256,  40, 15, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x0402FF25, "2148",         512,  40, 27, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x0301FF13, "2194",         256,  16, 17, 8192, SectorTable_212x, CHIP_VARIANT_LPC2XXX },
+   { 0x0301FF12, "2210",           0,  16,  0, 8192, SectorTable_211x, CHIP_VARIANT_LPC2XXX }, /* table is a "don't care" */
+   { 0x0401FF12, "2212",         128,  16, 15, 8192, SectorTable_211x, CHIP_VARIANT_LPC2XXX },
+   { 0x0601FF13, "2214",         256,  16, 17, 8192, SectorTable_212x, CHIP_VARIANT_LPC2XXX },
    /*            "2290"; same id as the LPC2210 */
-   { 0x0401FF13, "2292",        256, 16, 17, 8192, SectorTable_212x, CHIP_VARIANT_LPC2XXX },
-   { 0x0501FF13, "2294",        256, 16, 17, 8192, SectorTable_212x, CHIP_VARIANT_LPC2XXX },
-   { 0x00000000, "2361",        128, 34, 11, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x00000000, "2362",        128, 34, 11, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x0603FB02, "2364",        128, 34, 11, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX }, /* From UM10211 Rev. 01 -- 6 July 2007 */
-   { 0x1600F902, "2364",        128, 34, 11, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x1600E823, "2365",        256, 58, 15, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x0603FB23, "2366",        256, 58, 15, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX }, /* From UM10211 Rev. 01 -- 6 July 2007 */
-   { 0x1600F923, "2366",        256, 58, 15, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x1600E825, "2367",        512, 58, 15, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x0603FB25, "2368",        512, 58, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX }, /* From UM10211 Rev. 01 -- 6 July 2007 */
-   { 0x1600F925, "2368",        512, 58, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x1700E825, "2377",        512, 58, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x0703FF25, "2378",        512, 58, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX }, /* From UM10211 Rev. 01 -- 6 July 2007 */
-   { 0x1600FD25, "2378",        512, 58, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX }, /* From UM10211 Rev. 01 -- 29 October 2007 */
-   { 0x1700FD25, "2378",        512, 58, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x1700FF35, "2387",        512, 98, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX }, /* From UM10211 Rev. 03 -- 25 August 2008 */
-   { 0x1800F935, "2387",        512, 98, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x1800FF35, "2388",        512, 98, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x1500FF35, "2458",        512, 98, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x1600FF30, "2460",          0, 98,  0, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x1600FF35, "2468",        512, 98, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x1701FF30, "2470",          0, 98,  0, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
-   { 0x1701FF35, "2478",        512, 98, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX }
+   { 0x0401FF13, "2292",         256,  16, 17, 8192, SectorTable_212x, CHIP_VARIANT_LPC2XXX },
+   { 0x0501FF13, "2294",         256,  16, 17, 8192, SectorTable_212x, CHIP_VARIANT_LPC2XXX },
+   { 0x1600F701, "2361",         128,  34, 11, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX }, /* From UM10211 Rev. 4.1 -- 5 Sep 2012 */
+   { 0x1600FF22, "2362",         128,  34, 11, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX }, /* From UM10211 Rev. 4.1 -- 5 Sep 2012 */
+   { 0x0603FB02, "2364",         128,  34, 11, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX }, /* From UM10211 Rev. 01 -- 6 July 2007 */
+   { 0x1600F902, "2364",         128,  34, 11, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x1600E823, "2365",         256,  58, 15, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x0603FB23, "2366",         256,  58, 15, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX }, /* From UM10211 Rev. 01 -- 6 July 2007 */
+   { 0x1600F923, "2366",         256,  58, 15, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x1600E825, "2367",         512,  58, 15, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x0603FB25, "2368",         512,  58, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX }, /* From UM10211 Rev. 01 -- 6 July 2007 */
+   { 0x1600F925, "2368",         512,  58, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x1700E825, "2377",         512,  58, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x0703FF25, "2378",         512,  58, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX }, /* From UM10211 Rev. 01 -- 6 July 2007 */
+   { 0x1600FD25, "2378",         512,  58, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX }, /* From UM10211 Rev. 01 -- 29 October 2007 */
+   { 0x1700FD25, "2378",         512,  58, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x1700FF35, "2387",         512,  98, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX }, /* From UM10211 Rev. 03 -- 25 August 2008 */
+   { 0x1800F935, "2387",         512,  98, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x1800FF35, "2388",         512,  98, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x1500FF35, "2458",         512,  98, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x1600FF30, "2460",           0,  98,  0, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x1600FF35, "2468",         512,  98, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x1701FF30, "2470",           0,  98,  0, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+   { 0x1701FF35, "2478",         512,  98, 28, 4096, SectorTable_213x, CHIP_VARIANT_LPC2XXX },
+
+   { 0xA00A8B3F, "4310",           0, 168, 18, 4096, SectorTable_17xx, CHIP_VARIANT_LPC43XX }, /* From UM10503 Rev. 1.4 -- 3 Sep 2012 */
+   { 0xA0008B3C, "4320",           0, 200, 18, 4096, SectorTable_17xx, CHIP_VARIANT_LPC43XX }, /* From UM10503 Rev. 1.4 -- 3 Sep 2012 */
+   { 0xA0000A30, "4330",           0, 264, 18, 4096, SectorTable_17xx, CHIP_VARIANT_LPC43XX }, /* From UM10503 Rev. 1.4 -- 3 Sep 2012 */
+   { 0xA0000830, "4350",           0, 264, 18, 4096, SectorTable_17xx, CHIP_VARIANT_LPC43XX }, /* From UM10503 Rev. 1.4 -- 3 Sep 2012 */
+   { 0xA001C830, "4353/4357",   1024, 512, 30, 4096, SectorTable_4357, CHIP_VARIANT_LPC43XX }  /* From UM10503 Rev. 1.4 -- 3 Sep 2012 */
 };
 
 /***************************** NXP Download *********************************/
@@ -541,7 +584,7 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
 
     DebugPrintf(2, " OK\n");
 
-    SendComPort(IspEnvironment, "Synchronized\n");
+    SendComPort(IspEnvironment, "Synchronized\r\n");
 
     ReceiveComPort(IspEnvironment, Answer, sizeof(Answer) - 1, &realsize, 2, 1000);
 
@@ -556,13 +599,13 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
 
     DebugPrintf(3, "Setting oscillator\n");
 
-    sprintf(temp, "%s\n", IspEnvironment->StringOscillator);
+    sprintf(temp, "%s\r\n", IspEnvironment->StringOscillator);
 
     SendComPort(IspEnvironment, temp);
 
     ReceiveComPort(IspEnvironment, Answer, sizeof(Answer)-1, &realsize, 2, 1000);
 
-    sprintf(temp, "%s\nOK\r\n", IspEnvironment->StringOscillator);
+    sprintf(temp, "%s\r\nOK\r\n", IspEnvironment->StringOscillator);
 
     if (strcmp(Answer, temp) != 0)
     {
@@ -572,7 +615,7 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
 
     DebugPrintf(3, "Unlock\n");
 
-    cmdstr = "U 23130\n";
+    cmdstr = "U 23130\r\n";
 
     if (!SendAndVerify(IspEnvironment, cmdstr, Answer, sizeof Answer))
     {
@@ -582,7 +625,7 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
 
     DebugPrintf(2, "Read bootcode version: ");
 
-    cmdstr = "K\n";
+    cmdstr = "K\r\n";
 
     SendComPort(IspEnvironment, cmdstr);
 
@@ -615,7 +658,7 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
 
     DebugPrintf(2, "Read part ID: ");
 
-    cmdstr = "J\n";
+    cmdstr = "J\r\n";
 
     SendComPort(IspEnvironment, cmdstr);
 
@@ -627,23 +670,41 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
         return (NO_ANSWER_RPID);
     }
 
-    strippedAnswer = (strncmp(Answer, "J\n0\r\n", 5) == 0) ? Answer + 5 : Answer;
+    strippedAnswer = (strncmp(Answer, "J\r\n0\r\n", 5) == 0) ? Answer + 5 : Answer;
 
     Pos = strtoul(strippedAnswer, &endPtr, 10);
     *endPtr = '\0'; /* delete \r\n */
     for (i = sizeof LPCtypes / sizeof LPCtypes[0] - 1; i > 0 && LPCtypes[i].id != Pos; i--)
-        /* nothing */;
-        IspEnvironment->DetectedDevice = i;
+    {
+        /* nothing */
+    }
+    IspEnvironment->DetectedDevice = i;
     if (IspEnvironment->DetectedDevice == 0) {
-        DebugPrintf(2, "unknown");
+        DebugPrintf(2, "unknown (0x%X)\n", Pos);//strippedAnswer);
+        return (UNKNOWN_LPC);
     }
     else {
-        DebugPrintf(2, "LPC%s, %d kiB ROM / %d kiB SRAM",
+        DebugPrintf(2, "LPC%s, %d kiB FLASH / %d kiB SRAM",
             LPCtypes[IspEnvironment->DetectedDevice].Product,
             LPCtypes[IspEnvironment->DetectedDevice].FlashSize,
             LPCtypes[IspEnvironment->DetectedDevice].RAMSize);
     }
     DebugPrintf(2, " (0x%X)\n", Pos);//strippedAnswer);
+
+    if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC18XX ||
+       LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC43XX)
+    {
+        /* Workaround for LPC18xx / LPC43xx                            */
+        /* "Read part id" has now more answer parameter as we expect   */
+        /* Therefore FIFO is still full with some remaining characters */
+        /* The following code waits at least 2 * 100 ms,               */
+        /* should be enough to receive the remaining answer            */
+        char Dummy[128];
+        do
+        {
+            ReceiveComPort(IspEnvironment, Answer, sizeof(Answer)-1, &realsize, 1,100);
+        } while(realsize != 0);
+    }
 
     if (!IspEnvironment->DetectOnly)
     {
@@ -687,7 +748,10 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
         }
         else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC17XX ||
                 LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC13XX ||
-                LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC11XX)
+                LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC11XX ||
+                LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC18XX ||
+                LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC43XX ||
+                LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC8XX)
         {
             // Patch 0x1C, otherwise it is not running and jumps to boot mode
 
@@ -717,6 +781,10 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
 
             DebugPrintf(3, "Position 0x1C patched: ivt_CRC = 0x%08lX\n", ivt_CRC);
         }
+        else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC8XX)
+        {
+          // Checksum needed???
+        }
         else
         {
           DebugPrintf(1, "Internal error: wrong chip variant %d (detected device %d)\n", LPCtypes[IspEnvironment->DetectedDevice].ChipVariant, IspEnvironment->DetectedDevice);
@@ -727,7 +795,7 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
 #if 0
     DebugPrintf(2, "Read Unique ID:\n");
 
-    cmdstr = "N\n";
+    cmdstr = "N\r\n";
 
     SendComPort(IspEnvironment, cmdstr);
 
@@ -785,7 +853,43 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
     {
         DebugPrintf(2, "Wiping Device. ");
 
-        sprintf(tmpString, "P %d %d\n", 0, LPCtypes[IspEnvironment->DetectedDevice].FlashSectors-1);
+        if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC2XXX ||
+           LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC17XX ||
+           LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC13XX ||
+           LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC11XX)
+        {
+            sprintf(tmpString, "P %d %d\r\n", 0, LPCtypes[IspEnvironment->DetectedDevice].FlashSectors-1);
+        }
+        else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC18XX ||
+                LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC43XX)
+        {
+            // TODO: Last parameter is bank number, not yet selectable !!!
+            sprintf(tmpString, "P %d %d %d\r\n", 0, LPCtypes[IspEnvironment->DetectedDevice].FlashSectors-1, 0);
+        }
+        else
+        {
+            printf("Internal Error %s %d\n", __FILE__, __LINE__);
+            exit(1);
+        }
+
+         if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC2XXX ||
+           LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC17XX ||
+           LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC13XX ||
+           LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC11XX)
+        {
+            sprintf(tmpString, "P %d %d\r\n", 0, LPCtypes[IspEnvironment->DetectedDevice].FlashSectors-1);
+        }
+        else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC18XX ||
+                LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC43XX)
+        {
+            // TODO: Last parameter is bank number, not yet selectable !!!
+            sprintf(tmpString, "P %d %d %d\r\n", 0, LPCtypes[IspEnvironment->DetectedDevice].FlashSectors-1, 0);
+        }
+        else
+        {
+            printf("Internal Error %s %d\n", __FILE__, __LINE__);
+            exit(1);
+        }
 
         if (!SendAndVerify(IspEnvironment, tmpString, Answer, sizeof Answer))
         {
@@ -793,20 +897,55 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
             return (WRONG_ANSWER_PREP + GetAndReportErrorNumber(Answer));
         }
 
-        sprintf(tmpString, "E %d %d\n", 0, LPCtypes[IspEnvironment->DetectedDevice].FlashSectors-1);
+        if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC2XXX ||
+           LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC17XX ||
+           LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC13XX ||
+           LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC11XX)
+        {
+            sprintf(tmpString, "E %d %d\r\n", 0, LPCtypes[IspEnvironment->DetectedDevice].FlashSectors-1);
+        }
+        else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC18XX ||
+                LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC43XX)
+        {
+            // TODO: Last parameter is bank number, not yet selectable !!!
+            sprintf(tmpString, "E %d %d %d\r\n", 0, LPCtypes[IspEnvironment->DetectedDevice].FlashSectors-1, 0);
+        }
+        else
+        {
+            printf("Internal Error %s %d\n", __FILE__, __LINE__);
+            exit(1);
+        }
 
         if (!SendAndVerify(IspEnvironment, tmpString, Answer, sizeof Answer))
         {
             DebugPrintf(1, "Wrong answer on Erase-Command\n");
             return (WRONG_ANSWER_ERAS + GetAndReportErrorNumber(Answer));
         }
-        DebugPrintf(2, "OK \n");
+        DebugPrintf(2, "OK\n");
     }
     else{
         //no wiping requested: erasing sector 0 first
         DebugPrintf(2, "Erasing sector 0 first, to invalidate checksum. ");
 
-        sprintf(tmpString, "P %d %d\n", 0, 0);
+        if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC2XXX ||
+           LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC17XX ||
+           LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC13XX ||
+           LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC11XX ||
+           LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC8XX)
+        {
+            sprintf(tmpString, "P %d %d\r\n", 0, 0);
+        }
+        else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC18XX ||
+                LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC43XX)
+        {
+            // TODO: Last parameter is bank number, not yet selectable !!!
+            sprintf(tmpString, "P %d %d %d\r\n", 0, 0, 0);
+        }
+        else
+        {
+            printf("Internal Error %s %d\n", __FILE__, __LINE__);
+            exit(1);
+        }
 
         if (!SendAndVerify(IspEnvironment, tmpString, Answer, sizeof Answer))
         {
@@ -814,14 +953,32 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
             return (WRONG_ANSWER_PREP + GetAndReportErrorNumber(Answer));
         }
 
-        sprintf(tmpString, "E %d %d\n", 0, 0);
+        if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC2XXX ||
+           LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC17XX ||
+           LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC13XX ||
+           LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC11XX ||
+           LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC8XX)
+        {
+            sprintf(tmpString, "E %d %d\r\n", 0, 0);
+        }
+        else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC18XX ||
+                LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC43XX)
+        {
+            // TODO: Last parameter is bank number, not yet selectable !!!
+            sprintf(tmpString, "E %d %d %d\r\n", 0, 0, 0);
+        }
+        else
+        {
+            printf("Internal Error %s %d\n", __FILE__, __LINE__);
+            exit(1);
+        }
 
         if (!SendAndVerify(IspEnvironment, tmpString, Answer, sizeof Answer))
         {
             DebugPrintf(1, "Wrong answer on Erase-Command\n");
             return (WRONG_ANSWER_ERAS + GetAndReportErrorNumber(Answer));
         }
-        DebugPrintf(2, "OK \n");
+        DebugPrintf(2, "OK\n");
     }
     while (1)
     {
@@ -836,7 +993,25 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
 
         if (IspEnvironment->BinaryOffset < ReturnValueLpcRamStart(IspEnvironment)) // Skip Erase when running from RAM
         {
-            sprintf(tmpString, "P %ld %ld\n", Sector, Sector);
+            if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC2XXX ||
+               LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC17XX ||
+               LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC13XX ||
+               LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC11XX ||
+               LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC8XX)
+            {
+                sprintf(tmpString, "P %ld %ld %d\r\n", Sector, Sector, 0);
+            }
+            else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC18XX ||
+                    LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC43XX)
+            {
+                // TODO: Last parameter is bank number, not yet selectable !!!
+                sprintf(tmpString, "P %ld %ld 0\r\n", Sector, Sector, 0);
+            }
+            else
+            {
+                printf("Internal Error %s %d\n", __FILE__, __LINE__);
+                exit(1);
+            }
 
             if (!SendAndVerify(IspEnvironment, tmpString, Answer, sizeof Answer))
             {
@@ -848,7 +1023,25 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
             fflush(stdout);
             if (IspEnvironment->WipeDevice == 0 && (Sector!=0)) //Sector 0 already erased
             {
-                sprintf(tmpString, "E %ld %ld\n", Sector, Sector);
+                if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC2XXX ||
+                   LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC17XX ||
+                   LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC13XX ||
+                   LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC11XX ||
+                   LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC8XX)
+                {
+                    sprintf(tmpString, "E %ld %ld %d\r\n", Sector, Sector);
+                }
+                else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC18XX ||
+                        LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC43XX)
+                {
+                    // TODO: Last parameter is bank number, not yet selectable !!!
+                    sprintf(tmpString, "E %ld %ld %d\r\n", Sector, Sector, 0);
+                }
+                else
+                {
+                    printf("Internal Error %s %d\n", __FILE__, __LINE__);
+                    exit(1);
+                }
 
                 if (!SendAndVerify(IspEnvironment, tmpString, Answer, sizeof Answer))
                 {
@@ -896,7 +1089,9 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
                 CopyLength += ((45 * 4) - (CopyLength % (45 * 4)));
             }
 
-            sprintf(tmpString, "W %ld %ld\n", ReturnValueLpcRamBase(IspEnvironment), CopyLength);
+            CopyLength = 1024;
+
+            sprintf(tmpString, "W %ld %ld\r\n", ReturnValueLpcRamBase(IspEnvironment), CopyLength);
 
             if (!SendAndVerify(IspEnvironment, tmpString, Answer, sizeof Answer))
             {
@@ -907,189 +1102,235 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
             DebugPrintf(2, ".");
             fflush(stdout);
 
-            block_CRC = 0;
-            Line = 0;
-
-            // Transfer blocks of 45 * 4 bytes to RAM
-            for (Pos = SectorStart + SectorOffset; (Pos < SectorStart + SectorOffset + CopyLength) && (Pos < IspEnvironment->BinaryLength); Pos += (45 * 4))
+            if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC2XXX ||
+               LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC17XX ||
+               LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC13XX ||
+               LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC11XX ||
+               LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC18XX ||
+               LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC43XX)
             {
-                for (Block = 0; Block < 4; Block++)  // Each block 45 bytes
+                block_CRC = 0;
+                Line = 0;
+
+                // Transfer blocks of 45 * 4 bytes to RAM
+                for (Pos = SectorStart + SectorOffset; (Pos < SectorStart + SectorOffset + CopyLength) && (Pos < IspEnvironment->BinaryLength); Pos += (45 * 4))
                 {
-                    DebugPrintf(2, ".");
-                    fflush(stdout);
+                    for (Block = 0; Block < 4; Block++)  // Each block 45 bytes
+                    {
+                        DebugPrintf(2, ".");
+                        fflush(stdout);
 
 #if defined INTEGRATED_IN_WIN_APP
-                    // inform the calling application about having written another chuck of data
-                    AppWritten(45);
+                        // inform the calling application about having written another chuck of data
+                        AppWritten(45);
 #endif
 
-                    // Uuencode one 45 byte block
-                    tmpStringPos = 0;
+                        // Uuencode one 45 byte block
+                        tmpStringPos = 0;
 
 #if !defined COMPILE_FOR_LPC21
-                    sendbuf[Line][tmpStringPos++] = (char)(' ' + 45);    // Encode Length of block
+                        sendbuf[Line][tmpStringPos++] = (char)(' ' + 45);    // Encode Length of block
 #else
-                    tmpString[tmpStringPos++] = (char)(' ' + 45);        // Encode Length of block
+                        tmpString[tmpStringPos++] = (char)(' ' + 45);        // Encode Length of block
 #endif
 
-                    for (BlockOffset = 0; BlockOffset < 45; BlockOffset++)
-                    {
-                        if (IspEnvironment->BinaryOffset < ReturnValueLpcRamStart(IspEnvironment))
-                        { // Flash: use full memory
-                            c = IspEnvironment->BinaryContent[Pos + Block * 45 + BlockOffset];
+                        for (BlockOffset = 0; BlockOffset < 45; BlockOffset++)
+                        {
+                            if (IspEnvironment->BinaryOffset < ReturnValueLpcRamStart(IspEnvironment))
+                            { // Flash: use full memory
+                                c = IspEnvironment->BinaryContent[Pos + Block * 45 + BlockOffset];
+                            }
+                            else
+                            { // RAM: Skip first 0x200 bytes, these are used by the download program in LPC21xx
+                                c = IspEnvironment->BinaryContent[Pos + Block * 45 + BlockOffset + 0x200];
+                            }
+
+                            block_CRC += c;
+
+                            k = (k << 8) + (c & 255);
+
+                            if ((BlockOffset % 3) == 2)   // Collecting always 3 Bytes, then do processing in 4 Bytes
+                            {
+#if !defined COMPILE_FOR_LPC21
+                                sendbuf[Line][tmpStringPos++] = uuencode_table[(k >> 18) & 63];
+                                sendbuf[Line][tmpStringPos++] = uuencode_table[(k >> 12) & 63];
+                                sendbuf[Line][tmpStringPos++] = uuencode_table[(k >>  6) & 63];
+                                sendbuf[Line][tmpStringPos++] = uuencode_table[ k        & 63];
+#else
+                                tmpString[tmpStringPos++] = uuencode_table[(k >> 18) & 63];
+                                tmpString[tmpStringPos++] = uuencode_table[(k >> 12) & 63];
+                                tmpString[tmpStringPos++] = uuencode_table[(k >>  6) & 63];
+                                tmpString[tmpStringPos++] = uuencode_table[ k        & 63];
+#endif
+                            }
                         }
-                        else
-                        { // RAM: Skip first 0x200 bytes, these are used by the download program in LPC21xx
-                            c = IspEnvironment->BinaryContent[Pos + Block * 45 + BlockOffset + 0x200];
+
+
+#if !defined COMPILE_FOR_LPC21
+                        sendbuf[Line][tmpStringPos++] = '\n';
+                        sendbuf[Line][tmpStringPos++] = 0;
+
+                        SendComPort(IspEnvironment, sendbuf[Line]);
+                        // receive only for debug purposes
+                        ReceiveComPort(IspEnvironment, Answer, sizeof(Answer)-1, &realsize, 1,5000);
+#else
+                        tmpString[tmpStringPos++] = '\n';
+                        tmpString[tmpStringPos++] = 0;
+
+                        SendComPort(IspEnvironment, tmpString);
+                        ReceiveComPort(IspEnvironment, Answer, sizeof(Answer)-1, &realsize, 1,5000);
+                        if (strncmp(Answer, tmpString, tmpStringPos) != 0)
+                        {
+                            DebugPrintf(1, "Error on writing data (1)\n");
+                            return (ERROR_WRITE_DATA);
                         }
+#endif
 
-                        block_CRC += c;
+                        Line++;
 
-                        k = (k << 8) + (c & 255);
+                        DebugPrintf(3, "Line = %d\n", Line);
 
-                        if ((BlockOffset % 3) == 2)   // Collecting always 3 Bytes, then do processing in 4 Bytes
+                        if (Line == 20)
                         {
 #if !defined COMPILE_FOR_LPC21
-                            sendbuf[Line][tmpStringPos++] = uuencode_table[(k >> 18) & 63];
-                            sendbuf[Line][tmpStringPos++] = uuencode_table[(k >> 12) & 63];
-                            sendbuf[Line][tmpStringPos++] = uuencode_table[(k >>  6) & 63];
-                            sendbuf[Line][tmpStringPos++] = uuencode_table[ k        & 63];
+                            for (repeat = 0; repeat < 3; repeat++)
+                            {
+
+                                // printf("block_CRC = %ld\n", block_CRC);
+
+                                sprintf(tmpString, "%ld\n", block_CRC);
+
+                                SendComPort(IspEnvironment, tmpString);
+
+                                ReceiveComPort(IspEnvironment, Answer, sizeof(Answer)-1, &realsize, 2,5000);
+
+                                sprintf(tmpString, "%ld\nOK\r\n", block_CRC);
+
+                                printf("\n\n\nAnswer:%s\ntmpString:%s\n\n\n", Answer, tmpString);
+
+                                if (strcmp(Answer, tmpString) != 0)
+                                {
+                                    for (i = 0; i < Line; i++)
+                                    {
+                                        SendComPort(IspEnvironment, sendbuf[i]);
+                                        ReceiveComPort(IspEnvironment, Answer, sizeof(Answer)-1, &realsize, 1,5000);
+                                    }
+                                }
+                                else
+                                    break;
+                            }
+
+                            if (repeat >= 3)
+                            {
+                                DebugPrintf(1, "Error on writing block_CRC (1)\n");
+                                return (ERROR_WRITE_CRC);
+                            }
 #else
-                            tmpString[tmpStringPos++] = uuencode_table[(k >> 18) & 63];
-                            tmpString[tmpStringPos++] = uuencode_table[(k >> 12) & 63];
-                            tmpString[tmpStringPos++] = uuencode_table[(k >>  6) & 63];
-                            tmpString[tmpStringPos++] = uuencode_table[ k        & 63];
-#endif
-                        }
-                    }
-
-
-#if !defined COMPILE_FOR_LPC21
-                    sendbuf[Line][tmpStringPos++] = '\n';
-                    sendbuf[Line][tmpStringPos++] = 0;
-
-                    SendComPort(IspEnvironment, sendbuf[Line]);
-                    // receive only for debug proposes
-                    ReceiveComPort(IspEnvironment, Answer, sizeof(Answer)-1, &realsize, 1,5000);
-#else
-                    tmpString[tmpStringPos++] = '\n';
-                    tmpString[tmpStringPos++] = 0;
-
-                    SendComPort(IspEnvironment, tmpString);
-                    ReceiveComPort(IspEnvironment, Answer, sizeof(Answer)-1, &realsize, 1,5000);
-                    if (strncmp(Answer, tmpString, tmpStringPos) != 0)
-                    {
-                        DebugPrintf(1, "Error on writing data (1)\n");
-                        return (ERROR_WRITE_DATA);
-                    }
-#endif
-
-                    Line++;
-
-                    DebugPrintf(3, "Line = %d\n", Line);
-
-                    if (Line == 20)
-                    {
-#if !defined COMPILE_FOR_LPC21
-                        for (repeat = 0; repeat < 3; repeat++)
-                        {
-
                             // printf("block_CRC = %ld\n", block_CRC);
-
-                            sprintf(tmpString, "%ld\n", block_CRC);
-
+                            sprintf(tmpString, "%ld\r\n", block_CRC);
                             SendComPort(IspEnvironment, tmpString);
 
                             ReceiveComPort(IspEnvironment, Answer, sizeof(Answer)-1, &realsize, 2,5000);
 
-                            sprintf(tmpString, "%ld\nOK\r\n", block_CRC);
-
+                            sprintf(tmpString, "%ld\r\nOK\r\n", block_CRC);
                             if (strcmp(Answer, tmpString) != 0)
                             {
-                                for (i = 0; i < Line; i++)
-                                {
-                                    SendComPort(IspEnvironment, sendbuf[i]);
-                                    ReceiveComPort(IspEnvironment, Answer, sizeof(Answer)-1, &realsize, 1,5000);
-                                }
+                                DebugPrintf(1, "Error on writing block_CRC (2)\n");
+                                return (ERROR_WRITE_CRC);
                             }
-                            else
-                                break;
+#endif
+                            Line = 0;
+                            block_CRC = 0;
                         }
+                    }
+                }
 
-                        if (repeat >= 3)
-                        {
-                            DebugPrintf(1, "Error on writing block_CRC (1)\n");
-                            return (ERROR_WRITE_CRC);
-                        }
-#else
-                        // printf("block_CRC = %ld\n", block_CRC);
-                        sprintf(tmpString, "%ld\r\n", block_CRC);
+                if (Line != 0)
+                {
+#if !defined COMPILE_FOR_LPC21
+                    for (repeat = 0; repeat < 3; repeat++)
+                    {
+                        sprintf(tmpString, "%ld\n", block_CRC);
+
                         SendComPort(IspEnvironment, tmpString);
 
                         ReceiveComPort(IspEnvironment, Answer, sizeof(Answer)-1, &realsize, 2,5000);
 
-                        sprintf(tmpString, "%ld\r\nOK\r\n", block_CRC);
+                        sprintf(tmpString, "%ld\nOK\r\n", block_CRC);
+
                         if (strcmp(Answer, tmpString) != 0)
                         {
-                            DebugPrintf(1, "Error on writing block_CRC (2)\n");
-                            return (ERROR_WRITE_CRC);
+                            for (i = 0; i < Line; i++)
+                            {
+                                SendComPort(IspEnvironment, sendbuf[i]);
+                                ReceiveComPort(IspEnvironment, Answer, sizeof(Answer)-1, &realsize, 1,5000);
+                            }
                         }
-#endif
-                        Line = 0;
-                        block_CRC = 0;
+                        else
+                            break;
                     }
-                }
-            }
 
-            if (Line != 0)
-            {
-#if !defined COMPILE_FOR_LPC21
-                for (repeat = 0; repeat < 3; repeat++)
-                {
-                    sprintf(tmpString, "%ld\n", block_CRC);
-
+                    if (repeat >= 3)
+                    {
+                        DebugPrintf(1, "Error on writing block_CRC (3)\n");
+                        return (ERROR_WRITE_CRC2);
+                    }
+#else
+                    sprintf(tmpString, "%ld\r\n", block_CRC);
                     SendComPort(IspEnvironment, tmpString);
 
                     ReceiveComPort(IspEnvironment, Answer, sizeof(Answer)-1, &realsize, 2,5000);
 
-                    sprintf(tmpString, "%ld\nOK\r\n", block_CRC);
-
+                    sprintf(tmpString, "%ld\r\nOK\r\n", block_CRC);
                     if (strcmp(Answer, tmpString) != 0)
                     {
-                        for (i = 0; i < Line; i++)
-                        {
-                            SendComPort(IspEnvironment, sendbuf[i]);
-                            ReceiveComPort(IspEnvironment, Answer, sizeof(Answer)-1, &realsize, 1,5000);
-                        }
+                        DebugPrintf(1, "Error on writing block_CRC (4)\n");
+                        return (ERROR_WRITE_CRC2);
                     }
-                    else
-                        break;
-                }
-
-                if (repeat >= 3)
-                {
-                    DebugPrintf(1, "Error on writing block_CRC (3)\n");
-                    return (ERROR_WRITE_CRC2);
-                }
-#else
-                sprintf(tmpString, "%ld\r\n", block_CRC);
-                SendComPort(IspEnvironment, tmpString);
-
-                ReceiveComPort(IspEnvironment, Answer, sizeof(Answer)-1, &realsize, 2,5000);
-
-                sprintf(tmpString, "%ld\r\nOK\r\n", block_CRC);
-                if (strcmp(Answer, tmpString) != 0)
-                {
-                    DebugPrintf(1, "Error on writing block_CRC (4)\n");
-                    return (ERROR_WRITE_CRC2);
-                }
 #endif
+                }
+            }
+            else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC8XX)
+            {
+                unsigned char BigAnswer[4096];
+
+                DebugPrintf(1, "CopyLength=%d\n", CopyLength);
+
+                SendComPortBlock(IspEnvironment, &IspEnvironment->BinaryContent[SectorStart + SectorOffset], CopyLength);
+
+                if (ReceiveComPortBlockComplete(IspEnvironment, &BigAnswer, CopyLength, 10000) != 0)
+                {
+                  return (ERROR_WRITE_DATA);
+                }
+
+                if(memcmp(&IspEnvironment->BinaryContent[SectorStart + SectorOffset], BigAnswer, CopyLength))
+                {
+                  return (ERROR_WRITE_DATA);
+                }
             }
 
             if (IspEnvironment->BinaryOffset < ReturnValueLpcRamStart(IspEnvironment))
             {
                 // Prepare command must be repeated before every write
-                sprintf(tmpString, "P %ld %ld\n", Sector, Sector);
+                if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC2XXX ||
+                   LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC17XX ||
+                   LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC13XX ||
+                   LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC11XX ||
+                   LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC8XX)
+                {
+                    sprintf(tmpString, "P %ld %ld\r\n", Sector, Sector);
+                }
+                else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC18XX ||
+                        LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC43XX)
+                {
+                    // TODO: Last parameter is bank number, not yet selectable !!!
+                    sprintf(tmpString, "P %ld %ld %d\r\n", Sector, Sector, 0);
+                }
+                else
+                {
+                    printf("Internal Error %s %d\n", __FILE__, __LINE__);
+                    exit(1);
+                }
 
                 if (!SendAndVerify(IspEnvironment, tmpString, Answer, sizeof Answer))
                 {
@@ -1121,7 +1362,7 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
                     CopyLength = LPCtypes[IspEnvironment->DetectedDevice].MaxCopySize;
                 }
 
-                sprintf(tmpString, "C %ld %ld %ld\n", SectorStart + SectorOffset, ReturnValueLpcRamBase(IspEnvironment), CopyLength);
+                sprintf(tmpString, "C %ld %ld %ld\r\n", SectorStart + SectorOffset, ReturnValueLpcRamBase(IspEnvironment), CopyLength);
 
                 if (!SendAndVerify(IspEnvironment, tmpString, Answer, sizeof Answer))
                 {
@@ -1137,11 +1378,11 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
                     //and the compare result may not be correct.
                     if (SectorStart + SectorOffset<64)
                     {
-                        sprintf(tmpString, "M %d %ld %ld\n", 64, ReturnValueLpcRamBase(IspEnvironment) + (64 - SectorStart - SectorOffset), CopyLength-(64 - SectorStart - SectorOffset));
+                        sprintf(tmpString, "M %d %ld %ld\r\n", 64, ReturnValueLpcRamBase(IspEnvironment) + (64 - SectorStart - SectorOffset), CopyLength-(64 - SectorStart - SectorOffset));
                     }
                     else
                     {
-                        sprintf(tmpString, "M %ld %ld %ld\n", SectorStart + SectorOffset, ReturnValueLpcRamBase(IspEnvironment), CopyLength);
+                        sprintf(tmpString, "M %ld %ld %ld\r\n", SectorStart + SectorOffset, ReturnValueLpcRamBase(IspEnvironment), CopyLength);
                     }
 
                     if (!SendAndVerify(IspEnvironment, tmpString, Answer, sizeof Answer))
@@ -1170,6 +1411,20 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
         }
     }
 
+    // Activate Flash Bank is needed for LPC18xx and LPC43xx
+    if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC18XX ||
+       LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC43XX)
+    {
+        // TODO: Last parameter is bank number, not yet selectable !!!
+        sprintf(tmpString, "S %d\r\n", 0);
+
+        if (!SendAndVerify(IspEnvironment, tmpString, Answer, sizeof Answer))
+        {
+            DebugPrintf(1, "Wrong answer on Activate-Boot-Flash-Bank\n");
+            return (WRONG_ANSWER_ACTIV + GetAndReportErrorNumber(Answer));
+        }
+    }
+
     tDoneUpload = time(NULL);
     if (IspEnvironment->Verify)
         DebugPrintf(2, "Download Finished and Verified correct... taking %d seconds\n", tDoneUpload - tStartUpload);
@@ -1183,13 +1438,16 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
 
         if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC2XXX)
         {
-            sprintf(tmpString, "G %ld A\n", IspEnvironment->StartAddress);
+            sprintf(tmpString, "G %ld A\r\n", IspEnvironment->StartAddress);
         }
         else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC17XX ||
                 LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC13XX ||
-                LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC11XX)
+                LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC11XX ||
+                LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC18XX ||
+                LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC43XX ||
+                LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC8XX)
         {
-            sprintf(tmpString, "G %ld T\n", IspEnvironment->StartAddress & ~1);
+            sprintf(tmpString, "G %ld T\r\n", IspEnvironment->StartAddress & ~1);
         }
         else
         {
@@ -1212,13 +1470,16 @@ int NxpDownload(ISP_ENVIRONMENT *IspEnvironment)
             */
             if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC2XXX)
             {
-                sprintf(ExpectedAnswer, "G %ld A\n0", IspEnvironment->StartAddress);
+                sprintf(ExpectedAnswer, "G %ld A\r\n0", IspEnvironment->StartAddress);
             }
             else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC17XX ||
                     LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC13XX ||
-                    LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC11XX)
+                    LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC11XX ||
+                    LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC18XX ||
+                    LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC43XX ||
+                    LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC8XX)
             {
-                sprintf(ExpectedAnswer, "G %ld T\n0", IspEnvironment->StartAddress & ~1);
+                sprintf(ExpectedAnswer, "G %ld T\r\n0", IspEnvironment->StartAddress & ~1);
             }
             else
             {
@@ -1258,6 +1519,18 @@ unsigned long ReturnValueLpcRamStart(ISP_ENVIRONMENT *IspEnvironment)
   {
     return LPC_RAMSTART_LPC11XX;
   }
+  else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC18XX)
+  {
+    return LPC_RAMSTART_LPC18XX;
+  }
+  else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC43XX)
+  {
+    return LPC_RAMSTART_LPC43XX;
+  }
+  else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC8XX)
+  {
+    return LPC_RAMSTART_LPC8XX;
+  }
   printf("Error in ReturnValueLpcRamStart (%d)\n", LPCtypes[IspEnvironment->DetectedDevice].ChipVariant);
   exit(1);
 }
@@ -1280,6 +1553,18 @@ unsigned long ReturnValueLpcRamBase(ISP_ENVIRONMENT *IspEnvironment)
   else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC11XX)
   {
     return LPC_RAMBASE_LPC11XX;
+  }
+  else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC18XX)
+  {
+    return LPC_RAMBASE_LPC18XX;
+  }
+  else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC43XX)
+  {
+    return LPC_RAMBASE_LPC43XX;
+  }
+  else if(LPCtypes[IspEnvironment->DetectedDevice].ChipVariant == CHIP_VARIANT_LPC8XX)
+  {
+    return LPC_RAMBASE_LPC8XX;
   }
   printf("Error in ReturnValueLpcRamBase (%d)\n", LPCtypes[IspEnvironment->DetectedDevice].ChipVariant);
   exit(1);

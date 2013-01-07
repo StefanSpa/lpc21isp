@@ -217,7 +217,7 @@ Change-History:
                   Made compileable again for linux and windows
                   Fixed bug in ClearSerialPortBuffers (linux)
 1.53   2008-02-25 Changes by Michael Roth
-                  Get priority of debug messages wih -control right
+                  Get priority of debug messages with -control right
 1.54   2008-03-03 Martin Maurer
                   Try to bring lpc21isp back to a useable state in Windows, Cygwin, Linux and Mac OS.
                   Merged in changes by Erika Stefanini, which were done only for old version 1.49:
@@ -237,7 +237,7 @@ Change-History:
                   software compiled with Borland C++ Builder 5. I had to do some minor changes
                   for Borland (see defined __BORLANDC__) and modified to code slightly to have
                   some simple callbacks for screen i/o (see define INTEGRATED_IN_WIN_APP).
-                  Please notet that I don *not* check / modify the part for AnalogDevices !!
+                  Please note that I do *not* check / modify the part for AnalogDevices !!
                   Besides that I fixed some minor issues:
                   added dcb.fOutxCtsFlow = FALSE and dcb.fOutxDsrFlow = FALSE (sometimes required)
                   Now comparing one character less of answer to "Now launching ... code" command
@@ -293,7 +293,7 @@ Change-History:
                   Added support for multiple HEX files, besed on internal version 1.37B.
                   NOTE: this feature is used in production in 1.37B but is not tested in this version.
                   Added numeric debug level command line switch -debugn, n=[0-5]
-                  Added command line scitch -try n to specify nQuestionMarks limit. Defaul: 100
+                  Added command line scitch -try n to specify nQuestionMarks limit. Default: 100
                   Merged in DoNotStart patch from cgommel_new
                   Static functions declarations moved from lpc21isp.h to this file
                   Modified LoadFile() to return error_code instead exit(1)
@@ -374,17 +374,17 @@ static int AddFileHex(ISP_ENVIRONMENT *IspEnvironment, const char *arg);
 static int AddFileBinary(ISP_ENVIRONMENT *IspEnvironment, const char *arg);
 static int LoadFile(ISP_ENVIRONMENT *IspEnvironment, const char *filename, int FileFormat);
 
-#define ERR_RECORD_TYPE_LOADFILE	55 /** File record type not yet implemented. */
-#define ERR_ALLOC_FILE_LIST 60
-#define ERR_FILE_OPEN_HEX	61	/**< Couldn't open hex file. */
-#define ERR_FILE_SIZE_HEX	62	/**< Unexpected hex file size. */
-#define ERR_FILE_ALLOC_HEX	63	/**< Couldn't allocate enough memory for hex file. */
-#define ERR_FILE_ALLOC_BIN	64	/**< Couldn't allocate enough memory for bin file. */
-#define ERR_FILE_RECST_HEX	65	/**< Can't find start of record indicator for Intel Hex file.*/
-#define ERR_FILE_OPEN_BIN	66	/**< Couldn't open binary file. */
-#define ERR_FILE_SIZE_BIN	67	/**< Unexpected binary file size. */
-#define ERR_FILE_WRITE_BIN	68	/**< Couldn't write debug binary file to disk. How's that for ironic? */
-#define ERR_MEMORY_RANGE    69  /**< Out of memory range. */
+#define ERR_RECORD_TYPE_LOADFILE  55  /**< File record type not yet implemented. */
+#define ERR_ALLOC_FILE_LIST       60  /**< Error allocation file list. */
+#define ERR_FILE_OPEN_HEX         61  /**< Couldn't open hex file. */
+#define ERR_FILE_SIZE_HEX         62  /**< Unexpected hex file size. */
+#define ERR_FILE_ALLOC_HEX        63  /**< Couldn't allocate enough memory for hex file. */
+#define ERR_FILE_ALLOC_BIN        64  /**< Couldn't allocate enough memory for bin file. */
+#define ERR_FILE_RECST_HEX        65  /**< Can't find start of record indicator for Intel Hex file.*/
+#define ERR_FILE_OPEN_BIN         66  /**< Couldn't open binary file. */
+#define ERR_FILE_SIZE_BIN         67  /**< Unexpected binary file size. */
+#define ERR_FILE_WRITE_BIN        68  /**< Couldn't write debug binary file to disk. How's that for ironic? */
+#define ERR_MEMORY_RANGE          69  /**< Out of memory range. */
 
 /************* Portability layer. Serial and console I/O differences    */
 /* are taken care of here.                                              */
@@ -1045,6 +1045,7 @@ void ReceiveComPort(ISP_ENVIRONMENT *IspEnvironment,
     unsigned long p;
     unsigned char *Answer;
     char tmp_string[32];
+    unsigned char previous_char = 0;
 
     Answer = (unsigned char*) Ans;
 
@@ -1062,7 +1063,19 @@ void ReceiveComPort(ISP_ENVIRONMENT *IspEnvironment,
             {
                 if (Answer[p] == 0x0a)
                 {
-                    nr_of_0x0A++;
+                    if(previous_char != 0x0a)
+                    {
+                        nr_of_0x0A++;
+                    }
+                    else
+                    {
+                        DebugPrintf(3, "Workaround for LPC4357 (and similar): Ignore one 0x0a...\n");
+                        if((p + 1) != (*RealSize) + tmp_realsize)
+                        {
+                            memcpy(Answer + p, Answer + p + 1, (*RealSize) + tmp_realsize - p);
+                        }
+                        tmp_realsize--;
+                    }
                 }
                 else if (Answer[p] == 0x0d)
                 {
@@ -1072,6 +1085,7 @@ void ReceiveComPort(ISP_ENVIRONMENT *IspEnvironment,
                 {
                     eof = 1;
                 }
+                previous_char = Answer[p];
             }
         }
 
